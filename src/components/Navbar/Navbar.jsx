@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from "react-router-dom";
 import Logo from "../../assets/logo.png"
+import { ImHome } from 'react-icons/im';
 import "./Navbar.css";
 
 const Navbar = () => {
@@ -15,12 +16,12 @@ const Navbar = () => {
           </div>
           <div className="list-container">
           <li className="nav-item">
-            <NavLink to="/" style={({ isActive }) => ({textDecoration: isActive ? "underline" : "none", fontWeight: isActive ? 700 : 500})}>
-              Home
+            <NavLink to="/" style={({ isActive }) => ({backgroundColor: isActive ? "rgb(72,147,163, 0.2)" : "#FFF", color: isActive ? "rgb(72,147,163)" : "###", fontWeight: isActive ? 700 : 500})}>
+              <ImHome className='home-icon' /> Home
             </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink to="/login" style={({ isActive }) => ({textDecoration: isActive ? "underline" : "none", fontWeight: isActive ? 700: 500})}>
+            <NavLink to="/login" style={({ isActive }) => ({backgroundColor: isActive ? "rgb(72,147,163, 0.2)" : "#FFF", color: isActive ? "rgb(72,147,163)" : "###", fontWeight: isActive ? 700 : 500})}>
               User
             </NavLink>
           </li>

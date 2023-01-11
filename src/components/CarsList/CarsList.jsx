@@ -4,7 +4,7 @@ import CarCard from './CarCard/CarCard';
 import "./CarsList.css";
 
 const CarsList = () => {
-  const [cars, setCars] = useState(null);
+  const [cars, setCars] = useState([]);
 
   useEffect(() => {
     axios.get("http://localhost:5000/cars").then(result => setCars(result.data))

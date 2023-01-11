@@ -1,4 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=News+Cycle:wght@400;700&display=swap');
+
+.link-car-details {
+    text-decoration: none;
+    color:black;
+}
+
+.car-card {
+    border: 1px solid rgb(208, 201, 201);
+    border-radius: 20px;
+    display: flex;
+    padding: 1rem;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    min-height: 200px;
+}
+
 .car-photo {
-    width: 100px;
+    width: 200px;
     height: auto;
+    border-radius: 20px;
+    margin: 5px 1rem 5px 5px;
+}
+
+.car-info-container {
+    padding: 1.5rem 0;
+    position: relative;
+    width: 100%;
+}
+
+.car-name {
+    font-family: 'News Cycle', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    padding-bottom: 1rem;
+}
+
+.passenger-nb {
+    font-weight: 700;
+    color: rgb(64, 64, 73);
+}
+
+.price-container {
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+}
+
+.price {
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.available-car {
+    color: #2BC86B;
+    font-weight: 600;
+}
+
+.car-not-available {
+    color: #EC4F52;
+    font-weight: 600;
 }
