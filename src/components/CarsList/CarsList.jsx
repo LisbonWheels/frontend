@@ -1,24 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import axios from "axios";
-import CarCard from './CarCard/CarCard';
+import React, {useContext } from "react";
+import CarCard from "./CarCard/CarCard";
 import "./CarsList.css";
+import CarContext from "../../context/CarContext";
+import Filters from "../Filters/Filters";
 
 const CarsList = () => {
-  const [cars, setCars] = useState([]);
-
-  useEffect(() => {
-    axios.get("http://localhost:5000/cars").then(result => setCars(result.data))
-  }, [])
+  const { cars } = useContext(CarContext);
+  console.log(cars);
 
   return (
-    <div className='cars-list'>
-      {
-        cars ? cars.map(car => (
-          <CarCard key={car.id} car={car} />
-        )) : null
-      }
+    <div className="cars-list">
+      <Filters />
+      {cars ? cars.map((car) => <CarCard key={car.id} car={car} />) : null}
     </div>
-  )
-}
+  );
+};
 
-export default CarsList
+export default CarsList;
