@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.Header {
+  width: 100%;
+  height: 100vh;
+  background-image: url(../../assets/stefan-rodriguez-2AovfzYV3rc-unsplash.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.Header-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding-top: 3.5rem;
+}
+
+.Header-text h2 {
+  font-weight: 700;
+  margin-bottom: 1rem;
+  font-size: 4rem;
+}
+
+.Header-text p {
+  font-weight: 700;
+  font-size: 2rem;
+}
