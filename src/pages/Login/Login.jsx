@@ -53,11 +53,19 @@ return
         });
         navigate("/dashboard");
       },
+
+
       onFailure: (err) => {
         console.log("On Failure");
+        if (err == 'UserNotConfirmedException: User is not confirmed.') {
+         navigate('/home')
         console.log(err);
         setLoginError(err);
-      },
+      }},
+
+
+
+
       newPasswordRequired: () => {
         setConfirmError(true)
         console.log("New Password Required");
@@ -100,7 +108,7 @@ return
         {confirmError !== null && <p className="wrong">Your new user has not been confirmed yet, please contact your admin.</p>}
         <div className="button-wrapper">
           <button onClick={submitHandler}>Login</button>
-          <h3>Sign up?</h3>
+          <h3><a href='/signup'>Sign up?</a></h3>
         </div>
       </div>
     </div>
