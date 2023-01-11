@@ -1,0 +1,6 @@
+.cars-list {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 20px 40px;
+    margin: 3rem;
+}
