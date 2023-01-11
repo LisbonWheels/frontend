@@ -1,21 +1,24 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import "./CarCard.css";
 
 const CarCard = ( props ) => {
-  const {name, number_passengers, number_doors, gear_box, km, price, available, image} = props.car;
-  console.log(name)
+  const {id, name, number_passengers, Price, available, image} = props.car;
 
   return (
-    <div>
-      <img src={image} alt={name} className="car-photo"/>
-      <h2>{name}</h2>
-      <p>{number_passengers}</p>
-      <p>{number_doors}</p>
-      <p>{gear_box}</p>
-      <p>{km}Km</p>
-      <p>{price}€</p>
-      <p>{available}</p>
-    </div>
+    <Link className="link-car-details" to={`/car-details/${id}`}>
+      <div className='car-card'>
+        <img src={image} alt={name} className="car-photo"/>
+        <div className='car-info-container'>
+          <h2 className='car-name'>{name}</h2>
+          <p className='passenger-nb'>For {number_passengers} adults</p>
+          <div className='price-container'>
+            <p className='price'>{Price} €/day</p>
+            <p className={available === "True" ? "available-car" : "car-not-available"}>{available === "True" ? "Available" : "Not available"}</p>
+          </div>
+        </div>
+      </div>
+    </Link>
   )
 }
 
