@@ -9,8 +9,8 @@ const CarsList = () => {
   const [cars, setCars] = useState([]);
   const [newCar, setNewCar] = useState({});
   const [show, setShow] = useState(false);
-  const { search } = useContext(CarContext);
-  const {available} = cars;
+  const { search, price } = useContext(CarContext);
+  const { available } = cars;
 
   const showModal = (e) => {
     e.preventDefault();
@@ -22,7 +22,7 @@ const CarsList = () => {
       .get("http://localhost:5000/cars")
       .then((result) => setCars(result.data));
   }, [available, newCar]);
-  
+
   const handleSubmit = (event, newCar) => {
     event.preventDefault();
     setNewCar(newCar);
@@ -38,15 +38,24 @@ const CarsList = () => {
   return (
     <div>
       <img
-      className="img-add-car"
+        className="img-add-car"
         src="https://hotemoji.com/images/dl/d/heavy-plus-sign-emoji-by-twitter.png"
         alt="add-car"
         onClick={(e) => showModal(e)}
       />
       <Modal showModal={showModal} show={show} handleSubmit={handleSubmit} />
       <div className="cars-list">
-      {cars ? cars.filter(car => search !== "" ? car.name.toLowerCase().startsWith(search.toLowerCase()) : car).map((car) => <CarCard key={car.id} car={car} />) : null}
-    </div>
+        {cars
+          ? cars
+              .filter((car) =>
+                search !== ""
+                  ? car.name.toLowerCase().startsWith(search.toLowerCase())
+                  : car
+              )
+              .filter((car) => (price !== "" ? car.Price < price : car))
+              .map((car) => <CarCard key={car.id} car={car} />)
+          : null}
+      </div>
     </div>
   );
 };

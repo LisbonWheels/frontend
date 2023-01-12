@@ -7,6 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const Filters = () => {
   const { search, setSearch } = useContext(CarContext);
+  const { price, setPrice } = useContext(CarContext);
   return (
     <div className="filter-container">
       <div>
@@ -26,9 +27,18 @@ const Filters = () => {
       </div>
       <div>
         <h2 className="filter-title">Price</h2>
-        <select className="toggle-status">
-          <option value="">---</option>
-        </select>
+        <input
+          type="text"
+          name="Price"
+          id="Price"
+          placeholder="Search by price"
+          required
+          value={price}
+          onChange={(e) => {
+            setPrice(e.target.value);
+          }}
+          className="filter-by-title"
+        />
       </div>
       <div>
         <h2 className="filter-title">Date</h2>
