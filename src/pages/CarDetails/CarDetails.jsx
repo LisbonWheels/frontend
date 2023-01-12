@@ -3,12 +3,12 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./CarDetails.css";
+import Navbar from "../../components/Navbar/Navbar";
 
 const CarDetails = () => {
   const [car, setCar] = useState([]);
   const {
     name,
-    company_name,
     number_passengers,
     number_doors,
     gear_box,
@@ -32,6 +32,7 @@ const CarDetails = () => {
 
   return (
     <div>
+      <Navbar />
       <div className="car-container">
         {loading ? (
           <>
@@ -40,9 +41,6 @@ const CarDetails = () => {
               <img className="car-image" src={image} alt={name} />
             </div>
             <div className="container-right">
-              <p>
-                <strong>Company Name:</strong> {company_name}
-              </p>
               <p>
                 <strong>Number of Passengers:</strong> {number_passengers}
               </p>

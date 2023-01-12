@@ -26,6 +26,12 @@
   padding-bottom: 1rem;
 }
 
+
+.car-image {
+  max-width: 600px;
+  height: auto;
+}
+
 .car-button {
   margin-top: 2rem;
   text-align: center;
@@ -38,18 +44,15 @@
   color: rgb(55 65 81);
   border: 1px black solid;
   cursor: pointer;
-}
-
-.car-image {
-  max-width: 600px;
-  height: auto;
+  text-decoration: none;
+  font-size: 1.5rem;
 }
 
 .rent-button {
-  background-color: green;
+  background-color: #2cb054;
   color: white;
-  border-radius: 25px;
+  border-radius: 0.25rem;
   margin-top: 2rem;
   padding: 0.5rem 2rem;
-  font-size: 1rem;
+  font-size: 1.5rem;
 }
