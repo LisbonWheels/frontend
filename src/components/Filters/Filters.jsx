@@ -8,6 +8,8 @@ import "react-datepicker/dist/react-datepicker.css";
 const Filters = () => {
   const { search, setSearch } = useContext(CarContext);
   const { price, setPrice } = useContext(CarContext);
+  const { startDate, setStartDate } = useContext(CarContext);
+  const { endDate, setEndDate } = useContext(CarContext);
   return (
     <div className="filter-container">
       <div>
@@ -43,12 +45,24 @@ const Filters = () => {
       <div>
         <h2 className="filter-title">Date</h2>
         <div className="calendars-container">
+          <h3>Start date: </h3>
           <DatePicker
-            placeholderText="Start"
-            dateFormat="yyyy-MM-dd"
-            closeOnScroll={(e) => e.target === document}
-            showYearDropdown
-            scrollableMonthYearDropdown
+            closeOnScroll={true}
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+            selectsStart
+            startDate={startDate}
+            endDate={endDate}
+          />
+          <h3>End date: </h3>
+          <DatePicker
+            closeOnScroll={true}
+            selected={endDate}
+            onChange={(date) => setEndDate(date)}
+            selectsEnd
+            startDate={startDate}
+            endDate={endDate}
+            minDate={startDate}
           />
         </div>
       </div>

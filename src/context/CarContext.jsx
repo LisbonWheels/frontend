@@ -13,6 +13,8 @@ export function CarContextProvider({ children }) {
   const [cars, setCars] = useState([]);
   const [search, setSearch] = useState("");
   const [price, setPrice] = useState("");
+  const [startDate, setStartDate] = useState(new Date("2023/01/12"));
+  const [endDate, setEndDate] = useState(new Date("2023/01/13"));
 
   const getCars = () => {
     axios
@@ -33,6 +35,10 @@ export function CarContextProvider({ children }) {
         search,
         price,
         setPrice,
+        startDate,
+        setStartDate,
+        endDate,
+        setEndDate,
       }}
     >
       {children}
