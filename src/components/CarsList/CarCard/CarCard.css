@@ -74,6 +74,10 @@
     font-weight: 700;
 }
 
-.gone-button {
+.change-availability:hover {
+    cursor: pointer;
+}
+
+.gone {
     display: none;
 }

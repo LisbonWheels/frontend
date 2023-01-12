@@ -8,15 +8,17 @@ export default function Modal({showModal, show, handleSubmit}) {
   //   onClose(e);
   // };
   return (
-    <div className={show ? "modal" : "modalOff"} id="modal">
-      <h2>Add new Car to your fleet</h2>
-      <div className="content"> 
-        <AddCarForm handleSubmit={handleSubmit}/>
-      </div>
-      <div className="actions">
-        <button className="toggle-button" onClick={showModal}>
-          close
-        </button>
+    <div className="modal-container">
+      <div className={show ? "modal" : "modalOff"} id="modal">
+        <h2>Add a new car to your fleet</h2>
+        <div className="content"> 
+          <AddCarForm handleSubmit={handleSubmit}/>
+        </div>
+        <div className="actions">
+          <button className="toggle-button" onClick={showModal}>
+            Close
+          </button>
+        </div>
       </div>
     </div>
   );

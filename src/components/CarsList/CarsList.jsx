@@ -3,14 +3,16 @@ import axios from "axios";
 import "./CarsList.css";
 import CarCard from "./CarCard/CarCard";
 import Modal from "./Modal/Modal";
+import UserContext from "../../context/UserContext";
 import CarContext from "../../context/CarContext";
 
 const CarsList = () => {
   const [cars, setCars] = useState([]);
   const [newCar, setNewCar] = useState({});
   const [show, setShow] = useState(false);
+  const [isAvailable, setIsAvailable] = useState(true);
+  const {userDetails} = useContext(UserContext);
   const { search, price, startDate, endDate } = useContext(CarContext);
-  const { available } = cars;
 
   console.log(cars);
 
@@ -31,8 +33,8 @@ const CarsList = () => {
     axios
       .get("http://localhost:5000/cars")
       .then((result) => setCars(result.data));
-  }, [available, newCar]);
-
+  }, [isAvailable, newCar]);
+  
   const handleSubmit = (event, newCar) => {
     event.preventDefault();
     setNewCar(newCar);
@@ -48,13 +50,20 @@ const CarsList = () => {
 
   return (
     <div>
-      <img
-        className="img-add-car"
-        src="https://hotemoji.com/images/dl/d/heavy-plus-sign-emoji-by-twitter.png"
-        alt="add-car"
-        onClick={(e) => showModal(e)}
-      />
-      <Modal showModal={showModal} show={show} handleSubmit={handleSubmit} />
+      {userDetails?.role === "ford" ? (
+        <>
+          <div className="add-car-icon-container">
+            <img
+              className="img-add-car"
+              src="https://hotemoji.com/images/dl/d/heavy-plus-sign-emoji-by-twitter.png"
+              alt="add-car"
+              onClick={(e) => showModal(e)}
+            />
+            <h1 className="add-car-title">Add a car</h1>
+          </div>
+          <Modal showModal={showModal} show={show} handleSubmit={handleSubmit} />
+        </>
+      ): null}
       <div className="cars-list">
         {cars
           ? cars
@@ -74,7 +83,7 @@ const CarsList = () => {
                   : car
               )
               .filter((car) => (price !== "" ? car.Price < price : car))
-              .map((car) => <CarCard key={car.id} car={car} />)
+              .map((car) => <CarCard key={car.id} car={car} setIsAvailable={setIsAvailable} />)
           : null}
       </div>
     </div>
