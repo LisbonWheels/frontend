@@ -4,6 +4,7 @@ import "./CarsList.css";
 import CarCard from "./CarCard/CarCard";
 import Modal from "./Modal/Modal";
 import UserContext from "../../context/UserContext";
+import CarContext from "../../context/CarContext";
 
 const CarsList = () => {
   const [cars, setCars] = useState([]);
@@ -11,6 +12,17 @@ const CarsList = () => {
   const [show, setShow] = useState(false);
   const [isAvailable, setIsAvailable] = useState(true);
   const {userDetails} = useContext(UserContext);
+  const { search, price, startDate, endDate } = useContext(CarContext);
+
+  console.log(cars);
+
+  const convertedStartDate = `${startDate?.getFullYear()}-${
+    startDate?.getMonth() + 1
+  }-${startDate?.getDate()}`;
+
+  const convertedEndDate = `${endDate?.getFullYear()}-${
+    endDate?.getMonth() + 1
+  }-${endDate?.getDate()}`;
 
   const showModal = (e) => {
     e.preventDefault();
@@ -34,6 +46,7 @@ const CarsList = () => {
       console.log(results);
     });
   }, [newCar]);
+  console.log(cars);
 
   return (
     <div>
@@ -52,7 +65,26 @@ const CarsList = () => {
         </>
       ): null}
       <div className="cars-list">
-        {cars ? cars.map((car) => <CarCard key={car.id} car={car} setIsAvailable={setIsAvailable} />) : null}
+        {cars
+          ? cars
+              .filter((car) =>
+                search !== ""
+                  ? car.name.toLowerCase().startsWith(search.toLowerCase())
+                  : car
+              )
+              .filter((car) =>
+                startDate !== null
+                  ? car.available_from.slice(10) > convertedStartDate
+                  : car
+              )
+              .filter((car) =>
+                endDate !== null
+                  ? car.available_until.slice(10) < convertedEndDate
+                  : car
+              )
+              .filter((car) => (price !== "" ? car.Price < price : car))
+              .map((car) => <CarCard key={car.id} car={car} setIsAvailable={setIsAvailable} />)
+          : null}
       </div>
     </div>
   );

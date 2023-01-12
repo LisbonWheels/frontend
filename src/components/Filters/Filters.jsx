@@ -7,15 +7,21 @@ import "react-datepicker/dist/react-datepicker.css";
 
 const Filters = () => {
   const { search, setSearch } = useContext(CarContext);
+  const { price, setPrice } = useContext(CarContext);
+  const { startDate, setStartDate } = useContext(CarContext);
+  const { endDate, setEndDate } = useContext(CarContext);
+  /* console.log(startDate.getDate()) 
+  console.log(startDate.getMonth() + 1) 
+  console.log(startDate.getFullYear())  */
   return (
     <div className="filter-container">
       <div>
-        <h2 className="filter-title">Name</h2>
+        <h2 className="filter-title">Car name</h2>
         <input
           type="text"
           name="search"
           id="search"
-          placeholder="Search by Name"
+          placeholder="Search by car name"
           required
           value={search}
           onChange={(e) => {
@@ -26,28 +32,43 @@ const Filters = () => {
       </div>
       <div>
         <h2 className="filter-title">Price</h2>
-        <select className="toggle-status">
-          <option value="">---</option>
-        </select>
+        <input
+          type="text"
+          name="Price"
+          id="Price"
+          placeholder="Search by price less than"
+          required
+          value={price}
+          onChange={(e) => {
+            setPrice(e.target.value);
+          }}
+          className="filter-by-title"
+        />
       </div>
       <div>
         <h2 className="filter-title">Date</h2>
         <div className="calendars-container">
+          <h3>Start date: </h3>
           <DatePicker
-            placeholderText="Start"
-            dateFormat="yyyy-MM-dd"
-            closeOnScroll={(e) => e.target === document}
-            showYearDropdown
-            scrollableMonthYearDropdown
+            closeOnScroll={true}
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+            selectsStart
+            startDate={startDate}
+            endDate={endDate}
+          />
+          <h3>End date: </h3>
+          <DatePicker
+            closeOnScroll={true}
+            selected={endDate}
+            onChange={(date) => setEndDate(date)}
+            selectsEnd
+            startDate={startDate}
+            endDate={endDate}
+            minDate={startDate}
           />
         </div>
       </div>
-      <div>
-        <button className="clear-filters-button" type="button">
-          Clear
-        </button>
-      </div>
-      <button type="button" className="closing-button"></button>
     </div>
   );
 };
