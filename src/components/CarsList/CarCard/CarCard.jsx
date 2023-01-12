@@ -2,7 +2,9 @@ import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import "./CarCard.css";
 import UserContext from '../../../context/UserContext';
+import CarContext from '../../../context/CarContext';
 import axios from "axios";
+import { useEffect } from 'react';
 
 const CarCard = ( props ) => {
   const {id, name, number_passengers, Price, available, image} = props.car;
@@ -18,19 +20,25 @@ const CarCard = ( props ) => {
     setIsAvailable((prevState) => !prevState);
   }
 
-  const deleteCar = () => {
-    axios.delete(`http://localhost:5000/cars/${id}`);
-    navigate("/");
+  const deleteCar = (id) => {
+    axios.delete(`http://localhost:5000/cars/${id}`).then(results => {
+      console.log("id",id)
+      // console.log(cars.filter(car => car.id !== id))
+      // setCars((prevState) => console.log(prevState))
+    })
   }
+
+  // useEffect(() => {
+  //   getCars()
+  // }, [])
 
   return (
     <>
-
-        <div className='car-card' style={userDetails?.role === "admin" ? {"minHeight":"225px"} : {"minHeight":"190px"} }>
+        <div className='car-card' style={userDetails?.role === "admin" ? {"minHeight":"225px"} : {"minHeight":"250px"} }>
           <img src={image} alt={name} className="car-photo"/>
           <div className='car-info-container'>
             <h2 className='car-name'>{name}</h2>
-            <p className='passenger-nb'>For {number_passengers} adults</p>
+            <p className='passenger-nb'>For {number_passengers} persons</p>
             <div className='price-container'>
               <p className='price'>{Price} €/day</p>
               <p className={available === "True" ? "available-car" : "car-not-available"}>
@@ -54,7 +62,7 @@ const CarCard = ( props ) => {
           {userDetails?.role === "ford" ? (
             <button style={{"backgroundColor":"rgb(236,79,82, 0.8)"}}
                     className="change-availability"
-                    onClick={deleteCar}>
+                    onClick={()=>deleteCar(id)}>
                       Delete
             </button>
           ) : null}

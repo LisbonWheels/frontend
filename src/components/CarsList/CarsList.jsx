@@ -5,13 +5,16 @@ import CarCard from "./CarCard/CarCard";
 import Modal from "./Modal/Modal";
 import UserContext from "../../context/UserContext";
 import CarContext from "../../context/CarContext";
+import Header from "../../components/Header/Header";
+import Navbar from "../../components/Navbar/Navbar";
+import { Link } from "react-router-dom";
 
 const CarsList = () => {
   const [cars, setCars] = useState([]);
   const [newCar, setNewCar] = useState({});
   const [show, setShow] = useState(false);
   const [isAvailable, setIsAvailable] = useState(true);
-  const {userDetails} = useContext(UserContext);
+  const { userDetails } = useContext(UserContext);
   const { search, price, startDate, endDate } = useContext(CarContext);
 
   const convertedStartDate = startDate?.getTime();
@@ -30,7 +33,7 @@ const CarsList = () => {
       .get("http://localhost:5000/cars")
       .then((result) => setCars(result.data));
   }, [isAvailable, newCar]);
-  
+
   const handleSubmit = (event, newCar) => {
     event.preventDefault();
     setNewCar(newCar);
@@ -46,6 +49,15 @@ const CarsList = () => {
 
   return (
     <div>
+      {userDetails?.role === "admin" ? (
+        <div>
+          <Navbar />
+          <Header />
+          <Link to="/" className="change-availability company-list">
+            &larr; Company List
+          </Link>
+        </div>
+      ) : null}
       {userDetails?.role === "ford" ? (
         <>
           <div className="add-car-icon-container">
@@ -55,11 +67,15 @@ const CarsList = () => {
               alt="add-car"
               onClick={(e) => showModal(e)}
             />
-            <h1 className="add-car-title">Add a car</h1>
+            <h1 className="add-car-title">Add a new car to your fleet</h1>
           </div>
-          <Modal showModal={showModal} show={show} handleSubmit={handleSubmit} />
+          <Modal
+            showModal={showModal}
+            show={show}
+            handleSubmit={handleSubmit}
+          />
         </>
-      ): null}
+      ) : null}
       <div className="cars-list">
         {cars
           ? cars
@@ -79,8 +95,14 @@ const CarsList = () => {
                   : car
               )
               .filter((car) => (price !== "" ? car.Price < price : car))
-              .map((car) => <CarCard key={car.id} car={car} setIsAvailable={setIsAvailable} />)
-          : <p>There are no cars available with these specific features</p>}
+              .map((car) => (
+                <CarCard
+                  key={car.id}
+                  car={car}
+                  setIsAvailable={setIsAvailable}
+                />
+              ))
+          : null}
       </div>
     </div>
   );

@@ -25,7 +25,7 @@ const Navbar = () => {
           </li>
           <li className="nav-item">
             <NavLink to="/login" style={({ isActive }) => ({backgroundColor: isActive ? "rgb(72,147,163, 0.2)" : "#FFF", color: isActive ? "rgb(72,147,163)" : "###", fontWeight: isActive ? 700 : 600})}>
-            {userDetails ? "Your profile" : "Log in"}
+            {userDetails ? "Profile" : "Log in"}
             </NavLink>
           </li>
          {userDetails !== null && <li className="nav-item" onClick={() => {
