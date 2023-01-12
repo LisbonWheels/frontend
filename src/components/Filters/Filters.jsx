@@ -48,7 +48,7 @@ const Filters = () => {
       <div>
         <h2 className="filter-title">Date</h2>
         <div className="calendars-container">
-          <h3>Start date: </h3>
+          <h3 className="filter-title-Start">Start date: </h3>
           <DatePicker
             closeOnScroll={true}
             selected={startDate}
@@ -57,7 +57,7 @@ const Filters = () => {
             startDate={startDate}
             endDate={endDate}
           />
-          <h3>End date: </h3>
+          <h3 className="filter-title-Start">End date: </h3>
           <DatePicker
             closeOnScroll={true}
             selected={endDate}
