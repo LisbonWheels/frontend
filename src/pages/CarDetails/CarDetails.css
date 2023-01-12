@@ -1,4 +1,30 @@
+.car-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-left {
+  margin-right: 5rem;
+}
+
+.container-left h1 {
+  text-align: center;
+  padding-bottom: 2rem;
+  font-size: 4rem;
+  text-decoration: underline;
+}
+
+.container-right {
+  font-size: 1.5rem;
+}
+
+.container-right p {
+  padding-bottom: 1rem;
+}
+
 .car-image {
-    width: 300px;
-    height: auto;
+  max-width: 600px;
+  height: auto;
 }
