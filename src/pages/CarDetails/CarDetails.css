@@ -18,13 +18,38 @@
 
 .container-right {
   font-size: 1.5rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .container-right p {
   padding-bottom: 1rem;
 }
 
+.car-button {
+  margin-top: 2rem;
+  text-align: center;
+  display: inline-block;
+  border-radius: 0.25rem;
+  padding-top: 0.5rem /* 8px */;
+  padding-bottom: 0.5rem /* 8px */;
+  padding-left: 2rem /* 32px */;
+  padding-right: 2rem /* 32px */;
+  color: rgb(55 65 81);
+  border: 1px black solid;
+  cursor: pointer;
+}
+
 .car-image {
   max-width: 600px;
   height: auto;
+}
+
+.rent-button {
+  background-color: green;
+  color: white;
+  border-radius: 25px;
+  margin-top: 2rem;
+  padding: 0.5rem 2rem;
+  font-size: 1rem;
 }
