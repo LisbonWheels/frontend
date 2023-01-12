@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import "./CarCard.css";
 import UserContext from '../../../context/UserContext';
@@ -6,10 +6,12 @@ import axios from "axios";
 
 const CarCard = ( props ) => {
   const {id, name, number_passengers, Price, available, image} = props.car;
+  const setIsAvailable = props.setIsAvailable;
   const { userDetails } = useContext(UserContext);
 
   const updateAvailability = () => {
-    axios.put(`http://localhost:5000/cars/${id}`, available === "True" ? {"id": id, "available": "False"} : {"id": id, "available": "True"})
+    axios.put(`http://localhost:5000/cars/${id}`, available === "True" ? {"id": id, "available": "False"} : {"id": id, "available": "True"});
+    setIsAvailable((prevState) => !prevState);
   }
 
   const deleteCar = () => {

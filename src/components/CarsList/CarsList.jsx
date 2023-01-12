@@ -9,7 +9,7 @@ const CarsList = () => {
   const [cars, setCars] = useState([]);
   const [newCar, setNewCar] = useState({});
   const [show, setShow] = useState(false);
-  const {available} = cars;
+  const [isAvailable, setIsAvailable] = useState(true);
   const {userDetails} = useContext(UserContext);
 
   const showModal = (e) => {
@@ -21,7 +21,7 @@ const CarsList = () => {
     axios
       .get("http://localhost:5000/cars")
       .then((result) => setCars(result.data));
-  }, [available, newCar]);
+  }, [isAvailable, newCar]);
   
   const handleSubmit = (event, newCar) => {
     event.preventDefault();
@@ -52,7 +52,7 @@ const CarsList = () => {
         </>
       ): null}
       <div className="cars-list">
-        {cars ? cars.map((car) => <CarCard key={car.id} car={car} />) : null}
+        {cars ? cars.map((car) => <CarCard key={car.id} car={car} setIsAvailable={setIsAvailable} />) : null}
       </div>
     </div>
   );

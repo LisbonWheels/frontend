@@ -95,19 +95,20 @@ return
         <div className="company-logo-wrapper">
           <img className="company-logo" src={logo} alt="company-logo" />
         </div>
-          <input onChange={(e) => changeHandle(e)}  type={"text"} name='email' placeholder="Email"></input>
         <div>
-          <input onChange={(e) => changeHandle(e)} type={"password"} name='password' placeholder="Password"></input>
+          <h6 className="text">Email</h6>
+          <input className="input-field" onChange={(e) => changeHandle(e)}  type={"text"} name='email' placeholder="Email"></input>
         </div>
-        <div className="forgot-password-wrapper">
-          <a href="/">Forgot Password?</a>
+        <div>
+          <h6 className="text">Password</h6>
+          <input className="input-field" onChange={(e) => changeHandle(e)} type={"password"} name='password' placeholder="Password"></input>
         </div>
         {loginError !== null && <p className="wrong">Details are Wrong</p>}
         {roleError !== null && <p className="wrong">Your role is not assigned, please contact your admin</p>}
         {confirmError !== null && <p className="wrong">Your new user has not been confirmed yet, please contact your admin.</p>}
         <div className="button-wrapper">
-          <button onClick={submitHandler}>Login</button>
-          <h3><a href='/signup'>Sign up?</a></h3>
+          <button className="button-login-page" onClick={submitHandler}>Login</button>
+          <a href='/signup'><button className="button-login-page" onClick={submitHandler}>Sign Up</button></a>
         </div>
       </div>
     </div>
