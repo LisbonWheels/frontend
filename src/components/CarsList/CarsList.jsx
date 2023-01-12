@@ -5,10 +5,11 @@ import "./CarsList.css";
 
 const CarsList = () => {
   const [cars, setCars] = useState([]);
+  const {available} = cars;
 
   useEffect(() => {
     axios.get("http://localhost:5000/cars").then(result => setCars(result.data))
-  }, [])
+  }, [available])
 
   return (
     <div className='cars-list'>
