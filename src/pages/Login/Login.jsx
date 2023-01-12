@@ -6,13 +6,12 @@ import { CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
 import "./Login.css";
 import logo from "../../assets/company-logo.png";
 import UserPool from "../../UserPool";
+import UserContext from './../../context/UserContext';
 
 function Login() {
-  // const { setUserDetails, userDetails, InsertToSqlDb } =
-  //   useContext(UserContext);
+  const { userDetails, setUserDetails } = useContext(UserContext);
   const navigate = useNavigate();
   const [userObj, setUserObj] = useState(null);
-  const [userDetails, setUserDetails] = useState(null);
   const [loginError, setLoginError] = useState(null);
   const [roleError, setRoleError] = useState(null);
   const [confirmError, setConfirmError] = useState(null);
@@ -51,14 +50,14 @@ return
           role: data.accessToken.payload["cognito:groups"][0],
           email: data.idToken.payload.email,
         });
-        navigate("/dashboard");
+        navigate("/");
       },
 
 
       onFailure: (err) => {
         console.log("On Failure");
-        if (err == 'UserNotConfirmedException: User is not confirmed.') {
-         navigate('/home')
+        if (err === 'UserNotConfirmedException: User is not confirmed.') {
+         navigate('/')
         console.log(err);
         setLoginError(err);
       }},

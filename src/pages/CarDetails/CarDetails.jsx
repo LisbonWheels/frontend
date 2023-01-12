@@ -7,6 +7,7 @@ const CarDetails = () => {
   const [car, setCar] = useState([]);
   const {name, company_name, number_passengers, number_doors, gear_box, Km, Price, available, image} = car;
   const { id } = useParams();
+  const [loading, setLoading] = useState(false);
 
   const getCars = async () => {
     let cars = await axios
@@ -16,11 +17,12 @@ const CarDetails = () => {
 
   useEffect(() => {
     getCars();
+    setLoading(true);
   }, [id])
 
   return (
     <div>
-      {car ? (
+      {loading ? (
         <>
           <h1>{name}</h1>
           <img className='car-image' src={image} alt={name} />
@@ -30,9 +32,9 @@ const CarDetails = () => {
           <p>{gear_box}</p>
           <p>{Km}</p>
           <p>{Price}</p>
-          <p>{available}</p>
+          {available ? <p>{available}</p> : null }
         </>
-      ) : null}
+      ) : <p>Loading...</p>}
     </div>
   )
 }
