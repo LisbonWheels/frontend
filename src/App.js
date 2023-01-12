@@ -4,6 +4,7 @@ import Signup from "./pages/Signup/Signup";
 import Login from "./pages/Login/Login";
 import CarDetails from "./pages/CarDetails/CarDetails";
 import { UserContextProvider } from "./context/UserContext";
+import Company from "./pages/Company/Company";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/company" element={<Company />} />
           <Route path="/car-details/:id" element={<CarDetails />} />
         </Routes>
       </UserContextProvider>
