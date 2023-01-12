@@ -28,42 +28,42 @@ const AddCarForm = ({ handleSubmit }) => {
               name="name"
               id="name"
               type="text"
-              placeholder="name"
+              placeholder="Name of the car"
               onChange={handleChange}
             />
             <br />
           </div>
 
           <div className="form-group">
-            <label htmlFor="number_passengers">Number of Passengers</label>
+            <label htmlFor="number_passengers">Number of passengers</label>
             <input
               name="number_passengers"
               id="number_passengers"
               type="text"
-              placeholder="Number of Passengers"
+              placeholder="Number of passengers"
               onChange={handleChange}
             />
             <br />
           </div>
 
           <div className="form-group">
-            <label htmlFor="number_doors">Number of Doors</label>
+            <label htmlFor="number_doors">Number of doors</label>
             <input
               name="number_doors"
               id="number_doors"
               type="text"
-              placeholder="number_doors"
+              placeholder="Number of doors"
               onChange={handleChange}
             />
             <br />
           </div>
           <div className="form-group">
-            <label htmlFor="gear_box">Gear Box</label>
+            <label htmlFor="gear_box">Gear box</label>
             <input
               name="gear_box"
               id="gear_box"
               type="text"
-              placeholder="gear_box"
+              placeholder="Manual or Automatic"
               onChange={handleChange}
             />
             <br />
@@ -74,18 +74,18 @@ const AddCarForm = ({ handleSubmit }) => {
               name="km"
               id="kms"
               type="text"
-              placeholder="km"
+              placeholder="Km"
               onChange={handleChange}
             />
             <br />
           </div>
           <div className="form-group">
-            <label htmlFor="price">Price €\day</label>
+            <label htmlFor="price">Price</label>
             <input
               name="price"
               id="prices"
               type="text"
-              placeholder="Price €\days"
+              placeholder="€\days"
               onChange={handleChange}
             />
             <br />
@@ -96,7 +96,7 @@ const AddCarForm = ({ handleSubmit }) => {
               name="available"
               id="available"
               type="text"
-              placeholder="available"
+              placeholder="True or False"
               onChange={handleChange}
             />
             <br />
@@ -107,7 +107,7 @@ const AddCarForm = ({ handleSubmit }) => {
               name="image"
               id="image"
               type="text"
-              placeholder="image"
+              placeholder="URL"
               onChange={handleChange}
             />
             <br />

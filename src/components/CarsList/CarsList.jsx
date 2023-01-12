@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import "./CarsList.css";
 import CarCard from "./CarCard/CarCard";
 import Modal from "./Modal/Modal";
+import UserContext from "../../context/UserContext";
 
 const CarsList = () => {
   const [cars, setCars] = useState([]);
   const [newCar, setNewCar] = useState({});
   const [show, setShow] = useState(false);
   const {available} = cars;
+  const {userDetails} = useContext(UserContext);
 
   const showModal = (e) => {
     e.preventDefault();
@@ -35,16 +37,23 @@ const CarsList = () => {
 
   return (
     <div>
-      <img
-      className="img-add-car"
-        src="https://hotemoji.com/images/dl/d/heavy-plus-sign-emoji-by-twitter.png"
-        alt="add-car"
-        onClick={(e) => showModal(e)}
-      />
-      <Modal showModal={showModal} show={show} handleSubmit={handleSubmit} />
+      {userDetails?.role === "ford" ? (
+        <>
+          <div className="add-car-icon-container">
+            <img
+              className="img-add-car"
+              src="https://hotemoji.com/images/dl/d/heavy-plus-sign-emoji-by-twitter.png"
+              alt="add-car"
+              onClick={(e) => showModal(e)}
+            />
+            <h1 className="add-car-title">Add a car</h1>
+          </div>
+          <Modal showModal={showModal} show={show} handleSubmit={handleSubmit} />
+        </>
+      ): null}
       <div className="cars-list">
-      {cars ? cars.map((car) => <CarCard key={car.id} car={car} />) : null}
-    </div>
+        {cars ? cars.map((car) => <CarCard key={car.id} car={car} />) : null}
+      </div>
     </div>
   );
 };
