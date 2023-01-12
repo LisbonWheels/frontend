@@ -21,7 +21,7 @@ const CarDetails = () => {
   const [loading, setLoading] = useState(false);
 
   const getCars = async () => {
-    let cars = await axios.get(`http://localhost:5001/cars/${id}`);
+    let cars = await axios.get(`http://localhost:5000/cars/${id}`);
     setCar(cars.data);
   };
 
