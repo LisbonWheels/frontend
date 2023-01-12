@@ -21,3 +21,12 @@
     padding-bottom: 1.5rem;
     margin-left: 0.8rem;
 }
+
+.company-list{
+    font-size: 3rem;
+    /* margin-top: 700px; */
+    text-decoration: none;
+    color: #292f33;
+    justify-content: center;
+    width: 25%;
+}

@@ -19,14 +19,27 @@ const CarDetails = () => {
   } = car;
   const { id } = useParams();
   const [loading, setLoading] = useState(false);
+  const [colors, setColors] = useState(['#3001D4','#CD1E1D','	#0d1116','#637380','#a0a199','#304c7e','#5870a1']);
+  const [colorsDisplay, setColorsDisplay] = useState([]);
+
 
   const getCars = async () => {
     let cars = await axios.get(`http://localhost:5000/cars/${id}`);
     setCar(cars.data);
   };
 
+  const randColor = (colorNumber) =>  {
+    let array = []
+    for (let i = 1; i <= colorNumber; i++){
+      array.push(colors[Math.floor(Math.random() * (7 - 1 + 1)) + 1])
+    }
+    setColorsDisplay(array)
+  }
+
   useEffect(() => {
     getCars();
+    const colorNumber = Math.floor(Math.random() * (5 - 2 + 1)) + 2;
+    randColor(colorNumber)
     setLoading(true);
   }, [id]);
 
@@ -55,18 +68,24 @@ const CarDetails = () => {
                 {gear_box}
               </p>
               <p>
+                <strong>Colors Available: </strong>
+                <div className="color-display">
+                {colorsDisplay.map((color)=> <div style={{height:"20px", width:"20px",backgroundColor:color}}></div>)}
+                </div>
+              </p>
+              <p>
                 <strong>Kilometers: </strong>
                 {Km}
               </p>
               <p>
                 <strong>Price: </strong>
-                {Price}
+                {Price} €/day
               </p>
-              {available ? (
+              {/* {available ? (
                 <p>
                   <strong>Availability:</strong> {available}
                 </p>
-              ) : null}
+              ) : null} */}
               <Link to="/" className="car-button">
                 &larr; BACK
               </Link>

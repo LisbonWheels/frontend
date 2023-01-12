@@ -39,6 +39,7 @@ export function CarContextProvider({ children }) {
         setStartDate,
         endDate,
         setEndDate,
+        getCars
       }}
     >
       {children}

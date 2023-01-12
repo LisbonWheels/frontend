@@ -25,14 +25,14 @@ const Navbar = () => {
           </li>
           <li className="nav-item">
             <NavLink to="/login" style={({ isActive }) => ({backgroundColor: isActive ? "rgb(72,147,163, 0.2)" : "#FFF", color: isActive ? "rgb(72,147,163)" : "###", fontWeight: isActive ? 700 : 500})}>
-              User
+              Profile
             </NavLink>
           </li>
          {userDetails !== null && <li className="nav-item" onClick={() => {
            localStorage.clear()
           window.location.reload()
           }}>
-            <NavLink to="/" style={({ isActive }) => ({backgroundColor: isActive ? "rgb(72,147,163, 0.2)" : "#FFF", color: isActive ? "rgb(72,147,163)" : "###", fontWeight: isActive ? 700 : 500})}>
+            <NavLink to="/login" style={({ isActive }) => ({backgroundColor: isActive ? "rgb(72,147,163, 0.2)" : "#FFF", color: isActive ? "rgb(72,147,163)" : "###", fontWeight: isActive ? 700 : 500})}>
               Logout
             </NavLink>
           </li>}

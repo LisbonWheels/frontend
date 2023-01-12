@@ -4,8 +4,11 @@ import CarContext from "../../context/CarContext";
 import DatePicker from "react-datepicker";
 import "./Filters.css";
 import "react-datepicker/dist/react-datepicker.css";
+import UserContext from "../../context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 const Filters = () => {
+  const {userDetails} = useContext(UserContext);
   const { search, setSearch } = useContext(CarContext);
   const { price, setPrice } = useContext(CarContext);
   const { startDate, setStartDate } = useContext(CarContext);
@@ -13,7 +16,11 @@ const Filters = () => {
   /* console.log(startDate.getDate()) 
   console.log(startDate.getMonth() + 1) 
   console.log(startDate.getFullYear())  */
+  const navigate = useNavigate()
   return (
+    <>
+    {userDetails?.role && userDetails?.role !== "admin" ? 
+
     <div className="filter-container">
       <div>
         <h2 className="filter-title">Car name</h2>
@@ -69,7 +76,8 @@ const Filters = () => {
           />
         </div>
       </div>
-    </div>
+    </div>:  !userDetails ? navigate("/login") : null}
+    </>
   );
 };
 
