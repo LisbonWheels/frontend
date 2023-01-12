@@ -9,8 +9,16 @@ const CarsList = () => {
   const [cars, setCars] = useState([]);
   const [newCar, setNewCar] = useState({});
   const [show, setShow] = useState(false);
-  const { search, price } = useContext(CarContext);
+  const { search, price, startDate, endDate } = useContext(CarContext);
   const { available } = cars;
+
+  const convertedStartDate = `${startDate?.getFullYear()}-${
+    startDate?.getMonth() + 1
+  }-${startDate?.getDate()}`;
+
+  const convertedEndDate = `${endDate?.getFullYear()}-${
+    endDate?.getMonth() + 1
+  }-${endDate?.getDate()}`;
 
   const showModal = (e) => {
     e.preventDefault();
@@ -34,6 +42,7 @@ const CarsList = () => {
       console.log(results);
     });
   }, [newCar]);
+console.log(cars)
 
   return (
     <div>
@@ -52,6 +61,12 @@ const CarsList = () => {
                   ? car.name.toLowerCase().startsWith(search.toLowerCase())
                   : car
               )
+              .filter((car) =>
+              startDate !== null
+                  ? car.available_from.slice(10) > convertedStartDate : car )
+              .filter((car) =>
+              endDate !== null
+                  ? car.available_from.slice(10) <  convertedEndDate : car )
               .filter((car) => (price !== "" ? car.Price < price : car))
               .map((car) => <CarCard key={car.id} car={car} />)
           : null}

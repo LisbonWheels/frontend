@@ -10,15 +10,18 @@ const Filters = () => {
   const { price, setPrice } = useContext(CarContext);
   const { startDate, setStartDate } = useContext(CarContext);
   const { endDate, setEndDate } = useContext(CarContext);
+  /* console.log(startDate.getDate()) 
+  console.log(startDate.getMonth() + 1) 
+  console.log(startDate.getFullYear())  */
   return (
     <div className="filter-container">
       <div>
-        <h2 className="filter-title">Name</h2>
+        <h2 className="filter-title">Car name</h2>
         <input
           type="text"
           name="search"
           id="search"
-          placeholder="Search by Name"
+          placeholder="Search by car name"
           required
           value={search}
           onChange={(e) => {
@@ -33,7 +36,7 @@ const Filters = () => {
           type="text"
           name="Price"
           id="Price"
-          placeholder="Search by price"
+          placeholder="Search by price less than"
           required
           value={price}
           onChange={(e) => {
@@ -66,12 +69,6 @@ const Filters = () => {
           />
         </div>
       </div>
-      <div>
-        <button className="clear-filters-button" type="button">
-          Clear
-        </button>
-      </div>
-      <button type="button" className="closing-button"></button>
     </div>
   );
 };
