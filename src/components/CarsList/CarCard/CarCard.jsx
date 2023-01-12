@@ -9,8 +9,9 @@ import { useEffect } from 'react';
 const CarCard = ( props ) => {
   const {id, name, number_passengers, Price, available, image} = props.car;
   const setIsAvailable = props.setIsAvailable;
+  const {refresh, setRefresh} = props
   const { userDetails } = useContext(UserContext);
-  // const { cars, setCars, getCars } = useContext(CarContext);
+  const { getCars } = useContext(CarContext);
 
 
   const updateAvailability = () => {
@@ -19,16 +20,16 @@ const CarCard = ( props ) => {
   }
 
   const deleteCar = (id) => {
+    console.log(refresh);
     axios.delete(`http://localhost:5000/cars/${id}`).then(results => {
       console.log("id",id)
+      setRefresh(!refresh)
       // console.log(cars.filter(car => car.id !== id))
       // setCars((prevState) => console.log(prevState))
     })
   }
 
-  // useEffect(() => {
-  //   getCars()
-  // }, [])
+
 
   return (
     <>

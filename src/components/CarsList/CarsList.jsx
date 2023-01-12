@@ -16,8 +16,7 @@ const CarsList = () => {
   const [isAvailable, setIsAvailable] = useState(true);
   const { userDetails } = useContext(UserContext);
   const { search, price, startDate, endDate } = useContext(CarContext);
-
-  console.log(cars);
+  const [refresh, setRefresh] = useState(false)
 
   const convertedStartDate = `${startDate?.getFullYear()}-${
     startDate?.getMonth() + 1
@@ -36,7 +35,7 @@ const CarsList = () => {
     axios
       .get("http://localhost:5000/cars")
       .then((result) => setCars(result.data));
-  }, [isAvailable, newCar]);
+  }, [isAvailable, newCar, refresh]);
 
   const handleSubmit = (event, newCar) => {
     event.preventDefault();
@@ -104,6 +103,8 @@ const CarsList = () => {
                   key={car.id}
                   car={car}
                   setIsAvailable={setIsAvailable}
+                  setRefresh={setRefresh}
+                  refresh={refresh}
                 />
               ))
           : null}
