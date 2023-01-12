@@ -11,15 +11,19 @@ export default CarContext;
 
 export function CarContextProvider({ children }) {
   const [cars, setCars] = useState([]);
+  const [search, setSearch] = useState("");
+  const [price, setPrice] = useState("");
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
 
   const getCars = () => {
     axios
-    .get("http://localhost:5000/cars")
-    .then((result) => setCars(result.data));
-  }
+      .get("http://localhost:5000/cars")
+      .then((result) => setCars(result.data));
+  };
 
   useEffect(() => {
-    getCars()
+    getCars();
   }, []);
 
   return (
@@ -27,6 +31,14 @@ export function CarContextProvider({ children }) {
       value={{
         cars,
         setCars,
+        setSearch,
+        search,
+        price,
+        setPrice,
+        startDate,
+        setStartDate,
+        endDate,
+        setEndDate,
       }}
     >
       {children}
