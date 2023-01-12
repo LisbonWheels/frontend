@@ -11,8 +11,9 @@ export default CarContext;
 
 export function CarContextProvider({ children }) {
   const [cars, setCars] = useState([]);
-
-  const getCars = () => {
+const [search, setSearch] =useState("");
+  
+const getCars = () => {
     axios
     .get("http://localhost:5000/cars")
     .then((result) => setCars(result.data));
@@ -27,6 +28,8 @@ export function CarContextProvider({ children }) {
       value={{
         cars,
         setCars,
+        setSearch,
+        search
       }}
     >
       {children}

@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import "./CarsList.css";
 import CarCard from "./CarCard/CarCard";
 import Modal from "./Modal/Modal";
+import CarContext from "../../context/CarContext";
 
 const CarsList = () => {
   const [cars, setCars] = useState([]);
   const [newCar, setNewCar] = useState({});
   const [show, setShow] = useState(false);
+  const { search } = useContext(CarContext);
   const {available} = cars;
 
   const showModal = (e) => {
@@ -43,7 +45,7 @@ const CarsList = () => {
       />
       <Modal showModal={showModal} show={show} handleSubmit={handleSubmit} />
       <div className="cars-list">
-      {cars ? cars.map((car) => <CarCard key={car.id} car={car} />) : null}
+      {cars ? cars.filter(car => search !== "" ? car.name.toLowerCase().startsWith(search.toLowerCase()) : car).map((car) => <CarCard key={car.id} car={car} />) : null}
     </div>
     </div>
   );
