@@ -12,6 +12,8 @@ const CarsList = () => {
   const { search, price, startDate, endDate } = useContext(CarContext);
   const { available } = cars;
 
+  console.log(cars);
+
   const convertedStartDate = `${startDate?.getFullYear()}-${
     startDate?.getMonth() + 1
   }-${startDate?.getDate()}`;
@@ -42,7 +44,7 @@ const CarsList = () => {
       console.log(results);
     });
   }, [newCar]);
-console.log(cars)
+  console.log(cars);
 
   return (
     <div>
@@ -62,11 +64,15 @@ console.log(cars)
                   : car
               )
               .filter((car) =>
-              startDate !== null
-                  ? car.available_from.slice(10) > convertedStartDate : car )
+                startDate !== null
+                  ? car.available_from.slice(10) > convertedStartDate
+                  : car
+              )
               .filter((car) =>
-              endDate !== null
-                  ? car.available_from.slice(10) <  convertedEndDate : car )
+                endDate !== null
+                  ? car.available_until.slice(10) < convertedEndDate
+                  : car
+              )
               .filter((car) => (price !== "" ? car.Price < price : car))
               .map((car) => <CarCard key={car.id} car={car} />)
           : null}
