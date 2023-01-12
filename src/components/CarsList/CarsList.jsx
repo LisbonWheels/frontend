@@ -16,12 +16,9 @@ const CarsList = () => {
   const [isAvailable, setIsAvailable] = useState(true);
   const { userDetails } = useContext(UserContext);
   const { search, price, startDate, endDate } = useContext(CarContext);
-
   const convertedStartDate = startDate?.getTime();
   const convertedEndDate = endDate?.getTime();
-
-  console.log(convertedStartDate)
-  console.log(convertedEndDate)
+  const [refresh, setRefresh] = useState(false)
 
   const showModal = (e) => {
     e.preventDefault();
@@ -32,7 +29,7 @@ const CarsList = () => {
     axios
       .get("http://localhost:5000/cars")
       .then((result) => setCars(result.data));
-  }, [isAvailable, newCar]);
+  }, [isAvailable, newCar, refresh]);
 
   const handleSubmit = (event, newCar) => {
     event.preventDefault();
@@ -100,6 +97,8 @@ const CarsList = () => {
                   key={car.id}
                   car={car}
                   setIsAvailable={setIsAvailable}
+                  setRefresh={setRefresh}
+                  refresh={refresh}
                 />
               ))
           : null}
