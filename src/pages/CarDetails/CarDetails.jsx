@@ -14,7 +14,6 @@ const CarDetails = () => {
     gear_box,
     Km,
     Price,
-    available,
     image,
   } = car;
   const { id } = useParams();

@@ -1,10 +1,8 @@
 import React, { useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import "./CarCard.css";
 import UserContext from '../../../context/UserContext';
-import CarContext from '../../../context/CarContext';
 import axios from "axios";
-import { useEffect } from 'react';
 
 const CarCard = ( props ) => {
   const {id, name, number_passengers, Price, available, image} = props.car;
@@ -29,8 +27,6 @@ const CarCard = ( props ) => {
       // setCars((prevState) => console.log(prevState))
     })
   }
-
-
 
   return (
     <>
