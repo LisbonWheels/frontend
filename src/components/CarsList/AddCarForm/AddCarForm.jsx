@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AddCarForm = ({ handleSubmit }) => {
+  const navigate = useNavigate();
   const [addCar, setAddCar] = useState({
     company_name: "ME",
     name: "",
@@ -17,6 +19,7 @@ const AddCarForm = ({ handleSubmit }) => {
     const newValue = e.target.value;
     const newName = e.target.name;
     setAddCar({ ...addCar, [newName]: newValue });
+    navigate("/");
   };
 
   return (

@@ -1,18 +1,17 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import "./CarCard.css";
 import UserContext from '../../../context/UserContext';
-import CarContext from '../../../context/CarContext';
 import axios from "axios";
-import { useEffect } from 'react';
 
 const CarCard = ( props ) => {
   const {id, name, number_passengers, Price, available, image} = props.car;
   const setIsAvailable = props.setIsAvailable;
   const {refresh, setRefresh} = props
   const { userDetails } = useContext(UserContext);
-  const { getCars } = useContext(CarContext);
 
+  console.log(new Date(props.car.available_from).getTime())
+  console.log(new Date(props.car.available_until).getTime())
 
   const updateAvailability = () => {
     axios.put(`http://localhost:5000/cars/${id}`, available === "True" ? {"id": id, "available": "False"} : {"id": id, "available": "True"});
@@ -29,8 +28,6 @@ const CarCard = ( props ) => {
     })
   }
 
-
-
   return (
     <>
         <div className='car-card' style={userDetails?.role === "admin" ? {"minHeight":"225px"} : {"minHeight":"250px"} }>
@@ -46,7 +43,7 @@ const CarCard = ( props ) => {
             </div>
           </div>
           {userDetails === null || userDetails?.role === "user" ? (
-            <Link className="link-car-details" to={`/car-details/${id}`}  style={available === "False" ? {pointerEvents: 'none'} : null}>
+            <Link className="link-car-details" to={userDetails ? `/car-details/${id}` : "login"}  style={available === "False" ? {pointerEvents: 'none'} : null}>
               <button style={available === "False" ? {"backgroundColor":"rgb(236,79,82, 0.8)"} : {"backgroundColor":"rgb(72,147,163, 0.8)"}}
                       className="change-availability">
                         {available === "True" ? "Rent here" : "Unavailable to rent"}

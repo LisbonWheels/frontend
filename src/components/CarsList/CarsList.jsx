@@ -16,15 +16,9 @@ const CarsList = () => {
   const [isAvailable, setIsAvailable] = useState(true);
   const { userDetails } = useContext(UserContext);
   const { search, price, startDate, endDate } = useContext(CarContext);
+  const convertedStartDate = startDate?.getTime();
+  const convertedEndDate = endDate?.getTime();
   const [refresh, setRefresh] = useState(false)
-
-  const convertedStartDate = `${startDate?.getFullYear()}-${
-    startDate?.getMonth() + 1
-  }-${startDate?.getDate()}`;
-
-  const convertedEndDate = `${endDate?.getFullYear()}-${
-    endDate?.getMonth() + 1
-  }-${endDate?.getDate()}`;
 
   const showModal = (e) => {
     e.preventDefault();
@@ -89,12 +83,12 @@ const CarsList = () => {
               )
               .filter((car) =>
                 startDate !== null
-                  ? car.available_from.slice(10) > convertedStartDate
+                  ? new Date(car.available_from).getTime() < convertedStartDate
                   : car
               )
               .filter((car) =>
                 endDate !== null
-                  ? car.available_until.slice(10) < convertedEndDate
+                  ? new Date(car.available_until).getTime() > convertedEndDate
                   : car
               )
               .filter((car) => (price !== "" ? car.Price < price : car))

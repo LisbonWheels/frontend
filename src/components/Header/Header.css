@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -6,28 +8,34 @@
 
 .Header {
   width: 100%;
-  height: 100vh;
+  height: 95vh;
   background-image: url(../../assets/stefan-rodriguez-2AovfzYV3rc-unsplash.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  position: relative;
 }
 
 .Header-text {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  text-align: center;
   padding-top: 3.5rem;
+  padding-left: 3rem;
 }
 
-.Header-text h2 {
+.Header-text .Header-text-h2 {
   font-weight: 700;
-  margin-bottom: 1rem;
-  font-size: 4rem;
+  margin-bottom: 0.5rem;
+  font-size: 5.5rem;
+  color: #561b02;
+  font-family: 'Courgette', cursive;
+
 }
 
 .Header-text p {
   font-weight: 700;
   font-size: 2rem;
+  color: #230d03;
+  font-family: 'Courgette', cursive;
+  padding-left: 9rem;
 }

@@ -39,6 +39,7 @@
     transition: 0.3s;
     padding: 15px;
     border-radius: 10px;
+    color: black;
 }
 
 .nav-item a:hover {

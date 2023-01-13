@@ -19,20 +19,20 @@ const Navbar = () => {
           </div>
           <div className="list-container">
           <li className="nav-item">
-            <NavLink to="/" style={({ isActive }) => ({backgroundColor: isActive ? "rgb(72,147,163, 0.2)" : "#FFF", color: isActive ? "rgb(72,147,163)" : "###", fontWeight: isActive ? 700 : 500})}>
+            <NavLink to="/" style={({ isActive }) => ({backgroundColor: isActive ? "rgb(72,147,163, 0.2)" : "#FFF", color: isActive ? "rgb(72,147,163)" : "###", fontWeight: isActive ? 700 : 600})}>
               <ImHome className='home-icon' /> Home
             </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink to="/login" style={({ isActive }) => ({backgroundColor: isActive ? "rgb(72,147,163, 0.2)" : "#FFF", color: isActive ? "rgb(72,147,163)" : "###", fontWeight: isActive ? 700 : 500})}>
-              Profile
+            <NavLink to="/login" style={({ isActive }) => ({backgroundColor: isActive ? "rgb(72,147,163, 0.2)" : "#FFF", color: isActive ? "rgb(72,147,163)" : "###", fontWeight: isActive ? 700 : 600})}>
+            {userDetails ? "Profile" : "Log in"}
             </NavLink>
           </li>
          {userDetails !== null && <li className="nav-item" onClick={() => {
            localStorage.clear()
           window.location.reload()
           }}>
-            <NavLink to="/login" style={({ isActive }) => ({backgroundColor: isActive ? "rgb(72,147,163, 0.2)" : "#FFF", color: isActive ? "rgb(72,147,163)" : "###", fontWeight: isActive ? 700 : 500})}>
+            <NavLink to="/" style={{backgroundColor: "#FFF", color: "###", fontWeight: 600}}>
               Logout
             </NavLink>
           </li>}

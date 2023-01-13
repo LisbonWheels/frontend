@@ -13,16 +13,20 @@ const Filters = () => {
   const { price, setPrice } = useContext(CarContext);
   const { startDate, setStartDate } = useContext(CarContext);
   const { endDate, setEndDate } = useContext(CarContext);
-  /* console.log(startDate.getDate()) 
-  console.log(startDate.getMonth() + 1) 
-  console.log(startDate.getFullYear())  */
+
+  const onChange = (dates) => {
+    const [start, end] = dates;
+    setStartDate(start);
+    setEndDate(end);
+  };
+
   const navigate = useNavigate()
   return (
     <>
     {userDetails?.role && userDetails?.role !== "admin" ? 
 
     <div className="filter-container">
-      <div>
+      <div className="filter-sub-container">
         <h2 className="filter-title">Car name</h2>
         <input
           type="text"
@@ -34,45 +38,38 @@ const Filters = () => {
           onChange={(e) => {
             setSearch(e.target.value);
           }}
-          className="filter-by-title"
+          className="filter-input"
         />
       </div>
-      <div>
+      <div className="filter-sub-container">
         <h2 className="filter-title">Price</h2>
         <input
           type="text"
           name="Price"
           id="Price"
-          placeholder="Search by price less than"
+          placeholder="Search by maximum price"
           required
           value={price}
           onChange={(e) => {
             setPrice(e.target.value);
           }}
-          className="filter-by-title"
+          className="filter-input"
         />
       </div>
-      <div>
-        <h2 className="filter-title">Date</h2>
-        <div className="calendars-container">
-          <h3>Start date: </h3>
+      <div className="filter-sub-container">
+        <h2 className="filter-title">Date of availability</h2>
+        <div className="calendar-container">
           <DatePicker
+            dateFormat="dd/MM/yyyy"
             closeOnScroll={true}
             selected={startDate}
-            onChange={(date) => setStartDate(date)}
-            selectsStart
+            onChange={onChange}
             startDate={startDate}
             endDate={endDate}
-          />
-          <h3>End date: </h3>
-          <DatePicker
-            closeOnScroll={true}
-            selected={endDate}
-            onChange={(date) => setEndDate(date)}
-            selectsEnd
-            startDate={startDate}
-            endDate={endDate}
-            minDate={startDate}
+            selectsRange
+            minDate={new Date()}
+            showDisabledMonthNavigation
+            placeholderText="dd/MM/yyyy"
           />
         </div>
       </div>
