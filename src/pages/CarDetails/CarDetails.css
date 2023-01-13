@@ -1,8 +1,8 @@
 .car-container {
-  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 2rem;
 }
 
 .container-left {
@@ -11,13 +11,15 @@
 
 .container-left h1 {
   text-align: center;
-  padding-bottom: 2rem;
+  padding-top: 1.2rem;
+  padding-bottom: 2.5rem;
   font-size: 4rem;
-  text-decoration: underline;
+  text-decoration: underline overline #2579ba;
+  font-family: 'Courgette', cursive;
 }
 
 .container-right {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   display: flex;
   flex-direction: column;
 }
@@ -26,26 +28,27 @@
   padding-bottom: 1rem;
 }
 
-
 .car-image {
   max-width: 600px;
   height: auto;
 }
 
 .car-button {
-  margin-top: 2rem;
   text-align: center;
-  display: inline-block;
   border-radius: 0.25rem;
   padding-top: 0.5rem /* 8px */;
   padding-bottom: 0.5rem /* 8px */;
   padding-left: 2rem /* 32px */;
   padding-right: 2rem /* 32px */;
+  background-color: transparent;
   color: rgb(55 65 81);
   border: 1px black solid;
   cursor: pointer;
   text-decoration: none;
   font-size: 1.5rem;
+  position: relative;
+  left: 15rem;
+  margin-top: 3rem;
 }
 
 .rent-button {
@@ -55,6 +58,10 @@
   margin-top: 2rem;
   padding: 0.5rem 2rem;
   font-size: 1.5rem;
+}
+
+.rent-button:active {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .color-display{

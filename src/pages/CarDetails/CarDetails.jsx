@@ -45,6 +45,11 @@ const CarDetails = () => {
   return (
     <div>
       <Navbar />
+      <Link to="/">
+        <button className="car-button">
+          &larr; BACK
+        </button>
+      </Link>
       <div className="car-container">
         {loading ? (
           <>
@@ -54,18 +59,18 @@ const CarDetails = () => {
             </div>
             <div className="container-right">
               <p>
-                <strong>Number of Passengers:</strong> {number_passengers}
+                <strong>Number of passengers: </strong> {number_passengers}
               </p>
               <p>
-                <strong>Number of Doors: </strong>
+                <strong>Number of doors: </strong>
                 {number_doors}
               </p>
               <p>
-                <strong>Gear Box: </strong>
+                <strong>Gear box: </strong>
                 {gear_box}
               </p>
               <p>
-                <strong>Colors Available: </strong>
+                <strong>Colors available: </strong>
                 <div className="color-display">
                 {colorsDisplay.map((color)=> <div style={{height:"20px", width:"20px",backgroundColor:color}}></div>)}
                 </div>
@@ -83,9 +88,6 @@ const CarDetails = () => {
                   <strong>Availability:</strong> {available}
                 </p>
               ) : null} */}
-              <Link to="/" className="car-button">
-                &larr; BACK
-              </Link>
               <button className="rent-button">RENT NOW!</button>
             </div>
           </>
